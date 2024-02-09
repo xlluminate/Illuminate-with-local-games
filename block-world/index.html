@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Block World</title>
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
+    <script src="TemplateData/UnityProgress.js"></script>
+    <meta name="Author" content="www.Playjolt.com">
+
+    <style>
+       #container,#logo{top:50%;overflow:hidden}#container,#footer,#logo{left:50%;position:absolute}#logo,div.button{text-align:center}*{margin:0;padding:0}body{background:#070c23}#container{transform:translate(-50%,-50%);background:#000416}#logo{display:block;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}#footer{width:100%;height:40px;bottom:0;transform:translate(-50%,0);background:linear-gradient(to bottom,#ccc 0,#fff 100%)}div.fullscreen,div.moregames{margin:1px 1px 0 0;height:38px;line-height:38px}div.button{background:#222c36;padding:0 8px;border-radius:3px;color:#fff;font-weight:bold;text-decoration:none;cursor:pointer}div.moregames{padding:0 5px;float:left;color:#333;text-align:left;font-size:15px;position:relative;z-index:10}div.fullscreen{position:absolute;right:5px;display:inline-flex;font-weight:bold}div.fullscreen img{padding-left:5px}#gamedistads{position:fixed;top:0;right:0;bottom:40px;left:0;z-index:999; display:none;}
+    </style>
+
+      <script type="text/javascript">
+window["GD_OPTIONS"] = {
+    "gameId": "21c17cd544534a0f9058bbf0a39410d2",
+    "onEvent": function(event) {
+        switch (event.name) {
+            case "SDK_GAME_START":
+                break;
+            case "SDK_GAME_PAUSE":
+                break;
+        }
+    },
+};
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = 'js/gd-main.js';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'gamedistribution-jssdk'));
+          </script>
+
+ <script>
+     function FitScreen(){
+       var w=800;
+       var h=600;
+       var availWidth=window.innerWidth;
+       var availHeight=window.innerHeight;
+
+       if(availWidth/availHeight>w/h){
+         height = availHeight;
+         width = (height*w/h);
+      }else{
+         width = availWidth;
+         height = width*h/w;
+      }
+       document.getElementById("container").style.width=width + "px";
+       document.getElementById("container").style.height=(height + 40) + "px";
+       document.getElementById("canvas").style.width=width + "px";
+       document.getElementById("canvas").style.height=height + "px";
+
+       if(width/height>4/3){
+           document.getElementById("logo").style.height=Math.round(height*0.6) + "px";
+           document.getElementById("logo").style.width=Math.round(height*0.6*4/3) + "px";
+       }else{
+           document.getElementById("logo").style.width=Math.round(width*0.8) + "px";
+           document.getElementById("logo").style.height=Math.round(width*0.8*3/4) + "px";
+       }
+
+    }
+      </script>
+
+  </head>
+  <body onFocus="FitScreen();" onLoad="FitScreen();" onResize="FitScreen();" style="overflow:hidden;">
+
+    <div id="container" style="width: 800px; height: 600px">
+
+      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="800px"></canvas>
+
+       <div id="footer" style="display:none;">
+                <div class="moregames" onClick='CreateLinksInGame()'>
+                    <div class="button">More Games</div>
+                </div>
+                 <div id="sitelogo" onClick='CreateLinksInGame()' style="position:absolute;bottom:5px;left:50%;transform: translate(-50%,0);display:none;cursor:pointer;">
+                <img src='sitelogo143x22.png' alt="playjolt.com ">
+            </div>
+                <div onClick='CreateLinksInGame()' class="fullscreen">Block World</div>
+            </div>
+        </div>
+
+         <div id="logo" onClick='CreateLinksInGame()'>
+                <img src="img-loading.png" width="100%" height="100%">
+                <img src="playjolt-logo.png" style="bottom:-2px;position:absolute;left:50%;width:80%;transform: translate(-50%, 0%); cursor:pointer;" onClick='CreateLinksInGame()'>
+                <div id="loadinginfo" style="position:absolute;bottom:10px;left:50%;width:50%;max-height:10px;transform: translate(-50%, 0%);color:#a59d96;font-size:14px;">
+                    Loading...
+                </div>
+            </div>
+   </div>
+
+     <script type='text/javascript'>
+  var Module = {
+    TOTAL_MEMORY: 268435456,
+    errorhandler: null,     // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+    compatibilitycheck: null,
+    dataUrl: "Release/BlockWorldWebGL.data",
+    codeUrl: "Release/BlockWorldWebGL.js",
+    memUrl: "Release/BlockWorldWebGL.mem",
+  };
+
+  function CreateLinksInGame(){
+    window.op3n("http://www.playjolt.com/");
+    }
+</script>
+<script src="Release/UnityLoader.js"></script>
+
+   <div id="gamedistads"></div>
+
+    <script src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        $("#gamedistads").click(function () {
+            gdsdk.showBanner();
+            $('#gamedistads').remove();
+        });
+    </script>
+
+    <script src="js/analytics_ubg_v1_4.js"></script>
+    <script src="js/ubg235_client_v1_1.js"></script>
+  </body>
+</html>
