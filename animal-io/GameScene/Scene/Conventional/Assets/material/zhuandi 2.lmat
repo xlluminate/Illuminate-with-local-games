@@ -1,0 +1,44 @@
+{
+	"version":"LAYAMATERIAL:02",
+	"props":{
+		"type":"Laya.SkyBoxMaterial",
+		"name":"zhuandi 2",
+		"renderStates":[
+			{
+				"cull":2,
+				"blend":0,
+				"srcBlend":1,
+				"dstBlend":0,
+				"depthWrite":true,
+				"depthTest":515
+			}
+		],
+		"textures":[
+			{
+				"name":"textureCube",
+				"path":"../texture/SkyBox.ltc"
+			}
+		],
+		"vectors":[
+			{
+				"name":"tintColor",
+				"value":[
+					0.5147059,
+					0.5147059,
+					0.5147059,
+					0.5
+				]
+			}
+		],
+		"defines":[
+			"EnableLighting",
+			"SUNDISK_HIGH_QUALITY",
+			"_ALPHABLEND_OFF",
+			"_ALPHATEST_OFF",
+			"_ISVERTEXCOLOR_OFF"
+		],
+		"renderQueue":1000,
+		"exposure":1,
+		"rotation":135
+	}
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Dots.io</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+    <style>
+        html,
+        body {
+            -ms-touch-action: none;
+            background: #888888;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        #toolbar {
+            position: absolute;
+            bottom: 1%;
+            text-align: center;
+            z-index: 80;
+            margin: auto;
+            width: 80%;
+            left: 10%;
+            z-index: 80;
+            display: none;
+        }
+
+        #toolbar .btn {
+            width: 40%;
+            color: rgb(249, 244, 244);
+            background-color: rgb(148, 62, 62);
+            margin: auto;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            font-size: 18x;
+            margin: 1%;
+            position: relative;
+            max-width: 240px;
+        }
+    </style>
+	
+	<link rel="stylesheet" href="app.css" type="text/css">
+
+    <style>
+        #sg-loadscrn {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 9999;
+        }
+
+        #sg-loadtext {
+            position: absolute;
+            font-family: sans-serif;
+            top: 50%;
+            left: 50%;
+            width: 250px;
+            margin-left: -125px;
+            margin-top: -125px;
+            text-align: center;
+            line-height: 150%;
+            font-size: 16px;
+        }
+    </style>
+
+
+    <!--这个标签为通过egret提供的第三方库的方式生成的 javascript 文件-->
+    <!--modules_files_start-->
+    <script egret="lib" src="libs/modules/egret/egret.min.js"></script>
+    <script egret="lib" src="libs/modules/egret/egret.web.min.js"></script>
+    <script egret="lib" src="libs/modules/game/game.min.js"></script>
+    <script egret="lib" src="libs/modules/game/game.web.min.js"></script>
+    <script egret="lib" src="libs/modules/tween/tween.min.js"></script>
+    <script egret="lib" src="libs/modules/res/res.min.js"></script>
+    <script egret="lib" src="libs/modules/md5/md5.min.js"></script>
+    <!--modules_files_end-->
+
+    <!--这个标签为不通过egret提供的第三方库的方式使用的 javascript 文件，请将这些文件放在libs下，但不要放在modules下面。-->
+    <!--other_libs_files_start-->
+    <script egret="lib" src="libs/dcagent/dcagent.v2.min.js"></script>
+    <!--other_libs_files_end-->
+    <!--这个标签会被替换为项目中所有的 javascript 文件-->
+    <!--game_files_start-->
+    <script src="main.min.js"></script>
+</head>
+
+<body>
+    <div id="toolbar">
+        <img class="btn" ontouchstart="clickMore();" src="more.png" />
+    </div>
+    <div class="-mob-share-ui-bg"></div>
+    <div style="margin: auto;width: 100%;height: 100%;" class="egret-player" data-entry-class="Main" data-orientation="auto" data-scale-mode="showAll" data-resolution-mode="retina" data-frame-rate="30" data-content-width="640" data-content-height="960" data-show-paint-rect="false"
+        data-multi-fingered="2" data-show-fps="false" data-show-log="false" data-log-filter="" data-show-fps-style="x:0,y:0,size:30,textColor:0x00c200,bgAlpha:0.9">
+    </div>
+    <script>
+        String.prototype.format = function() {
+            var args = arguments;
+            return this.replace(/\{(\d+)\}/g, function(s, i) {
+                return args[i];
+            });
+        }
+        GetQueryString = function(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null)
+                return unescape(r[2]);
+            return null;
+        }
+        var channel = GetQueryString("channel");
+        if (typeof(channel) != "undefined" && channel != null && channel != "") {
+            GameConfig.CHANNEL = channel;
+        }
+
+        var isMobile = {
+            Android: function() {
+                return window.navigator.userAgent.match(/Android/i)
+            },
+            BlackBerry: function() {
+                return window.navigator.userAgent.match(/BlackBerry/i)
+            },
+            iOS: function() {
+                return window.navigator.userAgent.match(/iPhone|iPad|iPod/i)
+            },
+            Opera: function() {
+                return window.navigator.userAgent.match(/Opera Mini/i)
+            },
+            Windows: function() {
+                return window.navigator.userAgent.match(/IEMobile/i)
+            },
+            Safari: function() {
+                return window.navigator.userAgent.match(/Mobile Safari/i)
+            },
+            WeiXin: function() {
+                var ua = window.navigator.userAgent.toLowerCase();
+                var microStr = "" + ua.match(/MicroMessenger/i);
+                if (microStr == "null") {
+                    return false;
+                } else if (microStr == "micromessenger") {
+                    return true;
+                }
+            },
+            any: function() {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows() || isMobile.Safari());
+            }
+        };
+
+        window['setup_share_sdk'] = function(count) {
+
+        }
+
+        window['do_ih5game_share'] = function(count) {
+
+        }
+    </script>
+    <script>
+        egret.runEgret();
+    </script>
+    <script language=javascript>
+        function goHome() {
+
+        }
+
+        function clickMore() {
+
+        }
+
+        function dp_share() {
+
+        }
+
+        function dp_Ranking() {
+
+        }
+
+        function showAd() {}
+
+        function hideAd() {}
+
+        function dp_submitScore(score) {
+
+        }
+    </script>
+    
+	
+	
+	
+	
+	<script type="text/javascript">
+        window.SDK_OPTIONS = {
+            gameId: "luieuk312u2fyem7isdnwp8dl375cha8",
+            onEvent: function(a) {
+                switch (a.name) {
+                    case "SDK_GAME_PAUSE":
+                        // pause game logic / mute audio
+                        break;
+                    case "SDK_GAME_START":
+                        // advertisement done, resume game logic and unmute audio
+                        break;
+                    case "SDK_READY":
+                        // when sdk is ready
+                        break;
+                }
+            }
+        };
+        (function(a, b, c) {
+            var d = a.getElementsByTagName(b)[0];
+            a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "patch/js/gm-sdk.js", d.parentNode.insertBefore(a, d))
+        })(document, "script", "gamemonetize-sdk");
+    </script>
+
+
+    <script type="text/javascript">
+        function google_analytics() {
+            if (typeof sdk !== 'undefined' && sdk.showBanner !== 'undefined') {
+                sdk.showBanner();
+            }
+        };
+
+       
+
+        setTimeout(function() {
+            google_analytics();
+        }, 1000);
+        
+    </script>
+	
+	<div class="game-footer" style="display:none;">
+        <div class="jss31 jss39 jss51">
+            <div class="jss32" style="flex: 1 1 0%;">
+                <div class="jss31 jss39">
+                    <div class="jss32">
+                        <div style="place-content: center; align-items: center; box-sizing: border-box; display: flex; flex-flow: row nowrap;">
+                            <div class="game-footer-logo game-footer-btn">
+                                <a href="https://vodogame.com" target="_blank">
+                                    <div class="jss125">
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="jss32">
+                <div class="jss31 jss51">
+                    <div class="jss32">
+                        <div class="game-footer-btn game-footer-more">
+                            <!--1-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <script src="js/analytics_ubg_v1_4.js"></script>
+  <script src="js/ubg235_client_v1_1.js"></script>
+
+                </body> 
+                </html>
