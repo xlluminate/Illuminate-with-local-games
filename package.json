@@ -1,6 +1,6 @@
 {
   "name": "assets",
-  "description": "game-assets",
+  "description": "assets",
   "version": "1.0.0",
   "scripts": {
     "build": "yarn",
