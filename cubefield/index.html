@@ -8,8 +8,9 @@
     <title>Cubefield</title>
 
     <link rel="stylesheet" href="assets/app.css" type="text/css"/>
+    <link rel="icon" href="assets/unnamed.png"/>
 </head>
-<body style="overflow:hidden;">
+<body>
 <div id="gameContainer"></div>
 <div id="gui"></div>
 
@@ -31,27 +32,11 @@
             /**
              * Here we create the game
              */
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                            (i[r].q = i[r].q || []).push(arguments)
-                        }, i[r].l = Date.now();
-                a = s.createElement(o),
-                        m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-            ga('create', 'UA-72005341-29', 'auto');
-            ga('set', 'appName', 'Cubefield');
-            ga('set', 'appVersion', version);
-            ga('send', 'pageview');
+            ga = () => {};
         })
     })
 </script>
-  <script src="js/analytics_ubg_v1_4.js"></script>
-  <script src="js/ubg235_client_v1_1.js"></script>
+    <script src="/js/all.js"></script>
 
 </body>
 </html>
