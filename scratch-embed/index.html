@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Scratch Embedder</title>
+        <style>
+            body {
+                font-family: Arial;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <h1>Scratch Embedder</h1>
+            <p><input id="url-target" placeholder="Enter a scratch project id..." autocomplete="on" type="text" autofocus /></p>
+            <button id="create">Create page</button>
+            <button onclick="document.getElementById('url-target').value = ''">Clear input</button><br />
+            <p>Scratch: <input type="radio" id="scratch" name="options" checked="checked" onclick="toggleTW('hide')" /> Turbowarp: <input type="radio" id="turbowarp" name="options" onclick="toggleTW('show')" /> Forkphorus: <input type="radio" id="forkphorus" name="options" onclick="toggleTW('hide')" /></p>
+            <div id="tw">
+                <fieldset>
+                    <legend>Turbowarp Options</legend>
+                    <p>Settings Button: <input type="checkbox" id="settings" name="settings" checked="checked" /></p>
+                    <p>Autoplay: <input type="checkbox" id="autoplay" name="autoplay" /></p>
+                    <!-- <p>Fullscreen Background: <input type="color" id="fullscreen-background" name="fullscreen-background" value="#ff4c4c" /></p> -->
+                    <p>
+                        Addons:
+                        <ul>
+                            <li>Pause Button: <input type="checkbox" id="pause" name="pause" /></li>
+                            <li>Muted Project Player Mode: <input type="checkbox" id="mute-project" name="mute-project" /></li>
+                            <li>Remove Curved Stage Border: <input type="checkbox" id="remove-curved-stage-border" name="remove-curved-stage-border" /></li>
+                            <li>File Drag and Drop: <input type="checkbox" id="drag-drop" name="drag-drop" /></li>
+                            <li>Gamepad Support: <input type="checkbox" id="gamepad" name="gamepad" /></li>
+                            <li>Reverse Order of Project Controls: <input type="checkbox" id="editor-buttons-reverse-order" name="editor-buttons-reverse-order" /></li>
+                            <li>Clone Counter: <input type="checkbox" id="clones" name="clones" /></li>
+                        </ul>
+                    </p>
+                </fieldset>
+            </div>
+        </center>
+        <script>
+            document.getElementById('tw').style.display = 'none';
+            var url = document.getElementById("url-target");
+            var urlObj = new window.URL(window.location.href);
+            var settingsButton = "";
+            var autoplay = "";
+            var fullscreenBackground = "";
+            var pause = "";
+            var muteProject = "";
+            var stageBorder = "";
+            var dragDrop = "";
+            var gamepad = "";
+            var buttonsReverse = "";
+            var clones = "";
+            document.getElementById("create").onclick = function () {
+                if (!(Math.abs(document.getElementById("url-target").value) == NaN)) {
+                    settingsButton = "";
+                    autoplay = "";
+                    pause = "";
+                    muteProject = "";
+                    stageBorder = "";
+                    dragDrop = "";
+                    gamepad = "";
+                    buttonsReverse = "";
+                    clones = "";
+                    fullscreenBackground = "";
+                    if (document.getElementById('settings').checked == true) {
+                        settingsButton = "settings-button";
+                    }
+                    if (document.getElementById('autoplay').checked == true) {
+                        autoplay = "autoplay";
+                    }
+                    if (document.getElementById('pause').checked == true) {
+                        pause = "pause";
+                    }
+                    if (document.getElementById('mute-project').checked == true) {
+                        muteProject = "mute-project";
+                    }
+                    if (document.getElementById('remove-curved-stage-border').checked == true) {
+                        stageBorder = "remove-curved-stage-border";
+                    }
+                    if (document.getElementById('drag-drop').checked == true) {
+                        dragDrop = "drag-drop";
+                    }
+                    if (document.getElementById('gamepad').checked == true) {
+                        gamepad = "gamepad";
+                    }
+                    if (document.getElementById('editor-buttons-reverse-order').checked == true) {
+                        buttonsReverse = "editor-buttons-reverse-order";
+                    }
+                    if (document.getElementById('clones').checked == true) {
+                        clones = "clones";
+                    }
+                    win = window.open();
+                    win.document.body.style.margin = "0";
+                    win.document.body.style.height = "100vh";
+                    var iframe = win.document.createElement("iframe");
+                    iframe.style.border = "none";
+                    iframe.style.width = "100%";
+                    iframe.style.height = "100%";
+                    iframe.style.margin = "0";
+                    iframe.referrerpolicy = "no-referrer";
+                    iframe.allow = "fullscreen";
+                    if (document.getElementById('scratch').checked == true) {
+                        iframe.src = "https://scratch.mit.edu/projects/" + url.value + "/embed/";
+                    }
+                    if (document.getElementById('turbowarp').checked == true) {
+                        iframe.src = "https://turbowarp.org/" + url.value + "/embed?" + settingsButton + "&" + autoplay + "&" + fullscreenBackground + "&addons=" + pause + "," + muteProject + "," + stageBorder + "," + dragDrop + "," + gamepad + "," + buttonsReverse + "," + clones;
+                    }
+                    if (document.getElementById('forkphorus').checked == true) {
+                        iframe.src = "https://forkphorus.github.io/embed.html?id=" + url.value + "&auto-start=true&light-content=false";
+                    }
+                    win.document.body.appendChild(iframe);
+                    var script = win.document.createElement("script");
+                    win.document.body.appendChild(script);
+                }
+            };
+            function toggleTW(type) {
+                if (type == 'show') {
+                    document.getElementById('tw').style.display = 'block';
+                }
+                if (type == 'hide') {
+                    document.getElementById('tw').style.display = 'none';
+                }
+            };
+        </script>
+    </body>
+</html>
