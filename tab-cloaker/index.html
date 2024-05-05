@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Tab Cloaker</title>
+        <style>
+            body {
+                font-family: Arial;
+            }
+            .center {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="center">
+            <div class="center">
+                <h1>Tab Cloaker</h1><hr />
+                <h2>Title Changer</h2>
+                <p>Enter the title of the site you want to appear.</p>
+                <input id="title" /><button onclick="apply()">Apply</button>
+                <h2>Favicon Changer</h2>
+                <p>Enter a web url of a .png or .ico file you want to appear as the favicon of the site. (Example: https://www.google.com/favicon.ico)</p>
+                <input id="favicon" /><button onclick="apply()">Apply</button> <br />
+                <button onclick="reset()">Reset All</button>
+                <div class="spacer"></div>
+            </div>
+        </div>
+        <script>
+            function setCookie(name, value, days) {
+                var expires = "";
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "") + expires + "; path=/";
+            }
+            function apply() {
+                setCookie('title', document.getElementById('title').value, '100');
+                setCookie('favicon', document.getElementById('favicon').value, '100');
+            }
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(";");
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == " ") c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+            function reset() {
+                eraseCookie('title');
+                eraseCookie('favicon');
+            }
+            function eraseCookie(name) {
+                document.cookie = name + "=; Max-Age=-99999;";
+            }
+            var pageTitle = getCookie('title');
+            if (!(pageTitle == null)) {
+                document.title = pageTitle
+            }
+            var faviconLink = getCookie('favicon');
+            if (!(faviconLink == null)) {
+                var link = document.querySelector("link[rel~='icon']");
+                if (!link) {
+                    link = document.createElement('link');
+                    link.rel = 'icon';
+                    document.head.appendChild(link);
+                }
+                link.href = faviconLink;
+            }
+        </script>
+    </body>
+</html>
