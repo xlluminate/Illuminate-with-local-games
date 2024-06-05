@@ -27,10 +27,13 @@ function extractURL() {
     return null;
 }
 const save = () => {
-    var cookieData = '';
-    saveData();
+    var cookieData = document.cookie.split(';').map(function (c) {
+        var i = c.indexOf('=');
+        return [c.substring(0, i), c.substring(i + 1)];
+    });
+    var saveCookieData = JSON.stringify(JSON.stringify(cookieData));
     const link = document.createElement("a");
-    var content = cookieData;
+    var content = saveCookieData;
     const file = new Blob([content], { type: 'text/plain' });
     link.href = URL.createObjectURL(file);
     link.download = "data.txt";
