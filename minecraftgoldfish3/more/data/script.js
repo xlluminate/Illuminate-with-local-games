@@ -49,12 +49,12 @@ function load() {
      if (confirm('Are you sure you want to replace your site data with this value?') == true) {
         //var newCookieData = extractURL();
         //loadData(newCookieData);
-        var cookieData = JSON.parse(newCookieData);
-        cookieData.forEach(function (arr) {
-            document.cookie = arr[0] + '=' + arr[1];
-        });
-        confirm('Success, your data has been replaced.');
-        window.close();
+         var cookieData = JSON.parse(newCookieData);
+         JSON.parse(newCookieData).forEach(function (arr) {
+             document.cookie = arr[0] + '=' + arr[1];
+         });
+         confirm('Success, your data has been replaced.');
+         window.close();
     } else {
         window.close();
     }
