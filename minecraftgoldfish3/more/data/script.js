@@ -42,9 +42,17 @@ const save = () => {
     //window.close();
 }
 function load() {
-    if (confirm('Are you sure you want to replace your site data with this value?') == true) {
-        var newCookieData = extractURL();
-        loadData(newCookieData);
+    var newCookieData = prompt('Enter Game Data (open \"data.txt\" and copy all of the text, then paste it here):');
+    if (newCookieData == null || newCookieData == '') {
+        window.close();
+    }
+     if (confirm('Are you sure you want to replace your site data with this value?') == true) {
+        //var newCookieData = extractURL();
+        //loadData(newCookieData);
+        var cookieData = JSON.parse(newCookieData);
+        cookieData.forEach(function (arr) {
+            document.cookie = arr[0] + '=' + arr[1];
+        });
         confirm('Success, your data has been replaced.');
         window.close();
     } else {
