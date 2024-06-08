@@ -1,13 +1,16 @@
 //var allElements = [];
-//var num = 760;
-//for (let i = 0; i < num; i++) {
-    //allElements.push('<div class="game-item">' + document.querySelector('.game-item').innerHTML + '</div>');
-    //document.querySelector('.game-item').remove();
-//}
+//var num = 767;
+
+function initGames() {
+    for (let i = 0; i < num; i++) {
+        allElements.push('<div class="game-item">' + document.querySelector('.game-item').innerHTML + '</div>');
+        document.querySelector('.game-item').remove();
+    }
+}
 //document.querySelector('#game-list').innerHTML = allElements;
 function writeAll() {
     for (let i = 0; i < allElements.length; i++) {
-        document.querySelector('#game-list').innerHTML += allElements[i];
+        document.querySelector('#game-list').innerHTML += '<div class="game-item">' + allElements[i].innerHTML + '</div>';
     }
 }
 var elements = [];
@@ -17,9 +20,9 @@ function writeNew() {
         document.querySelector('#game-list').innerHTML += elementsNew[i];
     }
 }
-writeAll();
+//writeAll();
 function search() {
-    document.querySelector('#game-list-list').innerHTML = '';
+    document.querySelector('#game-list').innerHTML = '';
     writeAll();
     value = document.getElementById('search').value;
     elements = [];
@@ -53,5 +56,5 @@ function search() {
 function random() {
     var game = Math.floor(Math.random() * allElements.length);
     document.querySelector('#game-list').innerHTML = '';
-    document.querySelector('#game-list').innerHTML += allElements[game];
+    document.querySelector('#game-list').innerHTML += '<div class="game-item">' + allElements[game].innerHTML + '</div>';
 } 
