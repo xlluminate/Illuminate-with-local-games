@@ -1,3 +1,0 @@
-FORMAT:
-
-/flash/?game=*name of game*
