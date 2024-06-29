@@ -27,6 +27,8 @@ You cannot host the assets repository using Github Pages as the build and deploy
 
 * https://projectassets.teacherease.net
 
+* https://assets.illuminating.us
+
 * https://assets101.netlify.app
 
 * https://assets99.netlify.app
@@ -37,8 +39,8 @@ For support requesting a game, check out the official [Illuminate](https://teach
 
 ## Main Illuminate Repository
 
-[Official Repository](https://github.com/xlluminate/illuminate)
+[Official Repository](https://github.com/xlluminate/Illuminate)
 
 ##
 
-Last updated: 6/19/2024
+Last updated: 6/29/2024
