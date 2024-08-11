@@ -33,6 +33,12 @@ You cannot host the assets repository using Github Pages as the build and deploy
 
 * https://assets99.netlify.app
 
+* https://assets2.netlify.app
+
+* https://assets8228.onrender.com
+
+* https://assets1.ipultra.com
+
 ## Requesting a Game
 
 For support requesting a game, check out the official [Illuminate](https://teacherease.net) site and go to the "contact us" section.
@@ -43,4 +49,4 @@ For support requesting a game, check out the official [Illuminate](https://teach
 
 ##
 
-Last updated: 6/29/2024
+Last updated: 8/11/2024
