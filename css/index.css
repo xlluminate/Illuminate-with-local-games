@@ -1,0 +1,376 @@
+/* Shared styles for all pages */
+body {
+    font-family: "Noto Serif", serif;
+    font-optical-sizing: auto;
+    font-weight: 300%;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5; /* Light grey background */
+    color: #333333;
+}
+
+header {
+    background-color: #e8e8e8; /* Medium grey for header */
+    color: #333333;
+    padding: 1px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+}
+
+.top-nav {
+    padding: 10px;
+    background-color: #d8d8d8; /* Dark grey for top navigation */
+    transform: translateY(-5px);
+}
+
+nav.top-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav.top-nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+nav.top-nav ul li a {
+    color: #333333;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav.top-nav ul li a:hover {
+    background-color: #c1c1c1; /* Slightly darker grey on hover */
+}
+
+#subtitle {
+  font-size: 20px;
+  color: #333333;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+    position: relative; /* Ensure relative positioning for absolute positioning of the GitHub button */
+}
+
+.game-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.game-item {
+    background-color: #ffffff; /* White background for game items */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.game-item:hover {
+    transform: translateY(-5px) scale(1.02); /* Scaling up slightly on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Increasing shadow on hover */
+}
+
+.game-item img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.game-item h3 {
+    margin: 20px 0;
+    color: #6495ED;
+}
+
+footer {
+    background-color: #e8e8e8; /* Light grey for footer */
+    color: #333333;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+}
+
+.footer {
+    background-color: #e8e8e8; /* Light grey for footer */
+    color: #333333;
+    padding: 10px 0;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+}
+.footer a {
+    color: #0196ff; /* Blue for links */
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+a {
+    color: #0196ff; /*Blue for links*/
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.center {
+    text-align: center;
+}
+.spacer {
+    height: 180px;
+}
+.small-spacer {
+    height: 75px;
+}
+.search-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.main-search {
+  width: 40vw;
+  height: 6vh;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+  background: #f5f5f5;
+  border: 2px solid #333;
+  border-radius: 5px 0 0 5px; /* Rounded corners on the left */
+  padding: 10px;
+  color: #333;
+  outline: none;
+}
+
+.main-search::placeholder {
+  color: #999;
+  opacity: 1;
+  font-size: 18px;
+}
+
+.search-btn, .random-btn {
+  height: 6vh;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+  background: #f5f5f5;
+  border: 2px solid #333;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  outline: none;
+  border-left: none; /* Remove the left border */
+}
+
+.search-btn {
+  border-radius: 0 0 0 0; /* No rounded corners */
+}
+
+.random-btn {
+  border-radius: 0 5px 5px 0; /* Rounded corners on the right */
+}
+
+.search-btn:hover, .random-btn:hover {
+  background: #e0e0e0;
+}
+
+.search-btn {
+  border-right: none; /* Remove the right border */
+}
+
+.card {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.github-link {
+    position: fixed;
+    bottom: calc(10px + 15px); /* Adjust based on the margin of the "Get Started" button */
+    right: 20px;
+    width: 40px; /* Adjust the size as needed */
+    height: 40px; /* Adjust the size as needed */
+    border-radius: 50%;
+    background-color: #000; /* Black background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; /* Ensure the logo is above other content */
+}
+
+.github-link img {
+    width: 60%; /* Adjust the size of the logo */
+    height: auto;
+    filter: brightness(0) invert(1); /* Inverting colors to make the logo white */
+}
+/* CSS for the game list container */
+.game-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+/* CSS for each game item/card */
+.game-item {
+    background-color: #ffffcc; /* Light yellow background */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* CSS for hover effect on game item/card */
+.game-item:hover {
+    transform: translateY(-5px) scale(1.02); /* Scaling up slightly on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Increasing shadow on hover */
+}
+
+/* CSS for game images within the cards */
+.game-item img {
+    width: 100%;
+    height: 20rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* CSS for game titles within the cards */
+.game-item h3 {
+    margin: 20px 0;
+    color: #333333;
+    font-size: 18px;
+}
+
+/* CSS for game links within the cards */
+.game-item a {
+    color: #333333;
+    text-decoration: none;
+}
+.game-item a:hover {
+    text-decoration: none;
+}
+.center {
+    text-align: center;
+}
+
+.theme-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Styles for the theme selection label */
+.theme-container label {
+    font-size: 18px;
+    color: #333333;
+    margin-right: 10px;
+}
+
+/* Styles for the theme selection dropdown */
+.theme-container select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    background-color: #f5f5f5; /* Light grey background */
+    color: #333333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Styles for the theme selection dropdown on hover */
+.theme-container select:hover {
+    background-color: #e8e8e8; /* Slightly darker grey on hover */
+}
+
+.play-button {
+    background-color: #ffffcc; /* Pale yellow for play button */
+    color: #333333;
+    padding: 15px 40px;
+    font-size: 20px;
+    border: 2px solid #e0e0e0; /* Slightly darker grey border */
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    text-align: center;
+    transform: translateX(0px);
+}
+
+.play-button:hover {
+    background-color: #ffff99; /* Lighter shade of yellow on hover */
+    color: #666666; /* Darker grey text color on hover */
+    border-color: #cccccc; /* Darker grey border color on hover */
+}
+
+.domain-selection {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    max-width: 400px;
+}
+
+.domain-selection h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.domain-selection select, 
+.domain-selection input[type="text"], 
+.domain-selection button {
+    display: block;
+    width: calc(100% - 24px); 
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.domain-selection button {
+    background-color: #ffeb3b; 
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: fit-content;
+    padding: 10px 20px;
+    margin: 10px auto;
+}
+
+.domain-selection button:hover {
+    background-color: #fdd835; 
+}
+
+.domain-selection .info-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.domain-selection .info-link:hover {
+    text-decoration: underline;
+}
