@@ -80,12 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Flash game
                 const gameParam = extractFlashGameURL(gameUrl);
                 thumbnail = `flash/images/${gameParam}.png`;
-                gameLinkNew = `/project.html?url=flash/#game=${gameParam}`;
+                gameLinkNew = `projects/flash/#game=${gameParam}`;
             } else {
                 // HTML5 game
                 const gameLink = new URL(gameUrl).searchParams.get('url');
                 thumbnail = gameLink.replace(/index\.htm(l)?$/, 'cover.png');
-                gameLinkNew = `/project.html?url=${gameLink}`;
+                gameLinkNew = `projects/${gameLink}`;
             }
 
             const gameItem = document.createElement('div');
