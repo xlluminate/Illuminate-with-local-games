@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings | Illuminate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3317735030374126"
+     crossorigin="anonymous"></script>
+    <link id="theme-link" rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/settings.css">
+</head>
+<body>
+    <div class="center">
+        <header>
+            <nav class="top-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="projects.html">Games</a></li>
+                    <li><a href="proxies.html">Proxies</a></li>
+                    <li><a href="apps.html">Apps</a></li>
+                    <li><a href="cheats/index.html">Cheats</a></li>
+                    <li><a href="chat.html">Chat</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="review.html">Feedback</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="other/index.html">Other</a></li>
+                    <li><a href="about-blank">about:blank</a></li>
+                </ul>
+            </nav>
+            <h1>Settings</h1>
+        </header>
+        <div class="center">
+            <h2>Tab Cloaker:</h2>
+            <h3>Title Changer</h3>
+            <p>Enter the title of the site you want to appear.</p>
+            <input id="title" /><button onclick="apply()">Apply</button>
+            <h3>Favicon Changer</h3>
+            <p>Enter a web url of a .png or .ico file you want to appear as the favicon of the site. (Example: https://www.google.com/favicon.ico)</p>
+            <input id="favicon" /><button onclick="apply()">Apply</button> <br />
+            <button onclick="reset()">Reset All</button>
+            <h2>Save / Load Game Data:</h2>
+            <h3>Saving Game Data</h3>
+            <p>Click the button below to save your game data. This will make a popup window to download your game data.</p>
+            <p><b>Note:</b> This will only save game data into your current selected server. To change this server, go to the <a href="projects.html">games</a> section and select a different game server.</p>
+            <button onclick="saveData()">Save Game Data</button>
+            <h3>Loading Game Data</h3>
+            <p>Once you click on the button below, you will be asked to enter all game data. To do this, open the 'data.txt' file, copy all the text, and paste it in the input.</p>
+            <p><b>Note:</b> This will only load game data into your current selected server. To change this server, go to the <a href="projects.html">games</a> section and select a different game server.</p>
+            <button onclick="loadData()">Load Game Data</button>
+            <div class="theme-container">
+            <h2>Light / Dark Mode:</h2>
+            <label for="theme">Choose theme:</label>
+            <select id="theme" onchange="setTheme()">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+            </select>
+            </div>
+            <h2>Game Server:</h2>
+            <p>To choose a different game server, go to the <a href="projects.html">games</a> webpage.</p>
+            <!-- <h2>Automatic Fullscreen:</h2>
+            <p>This option enables you to automatically go to the fullscreen of the game you are playing.</p>
+            <p>Automatic Fullscreen: <input id="fullscreen" type="checkbox" onchange="setFullscreenCookie()" /></p> -->
+            <div class="spacer"></div>
+        </div>
+    </div>
+    <script src="js/settings.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
