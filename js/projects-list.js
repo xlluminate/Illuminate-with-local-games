@@ -20,7 +20,6 @@ function setCookie(name, value, days) {
 }
 
 var allElements = [];
-var num = 900;
 var elements = [];
 var elementsNew = [];
 
@@ -31,10 +30,6 @@ function setupGames() {
             allElements.push(el);
             console.log(el);
         });
-        //for (let i = 0; i < num; i++) {
-            //allElements.push('<div class="game-item">' + document.querySelector('.game-item').innerHTML + '</div>');
-            //document.querySelector('.game-item').remove();
-        //}   
     }
 
     function writeAll() {
@@ -52,31 +47,9 @@ function setupGames() {
     initGames();
 }
 
-function extractFlashGameURL(href) {
-    var url = href;
-    if (url.indexOf('#') !== -1) {
-        var queryString = url.split('#')[1];
-        var parameters = queryString.split('&');
-        for (var i = 0; i < parameters.length; i++) {
-            var parameter = parameters[i];
-            if (parameter.startsWith('game=')) {
-                return parameter.substring(5);
-            }
-        }
-    }
-    return null;
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     const loadingIndicator = document.getElementById('loading');
     const gameList = document.getElementById('game-list');
-
-    // Ensure gamedomain cookie is set
-    var gamedomain = getCookie('gamedomain');
-    if (!gamedomain) {
-        gamedomain = "projectassets.teacherease.net";
-        setCookie('gamedomain', gamedomain, 365);
-    }
 
     // Function to fetch the game list from the external HTML file
     function fetchGameList() {
@@ -99,20 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const link = card.querySelector('a');
             const gameName = link.textContent;
             const gameUrl = link.href;
+
             let thumbnail;
             let gameLinkNew;
 
             if (gameUrl.includes('#game=')) {
                 // Flash game
                 const gameParam = extractFlashGameURL(gameUrl);
-                thumbnail = `https://${gamedomain}/flash/images/${gameParam}.png`;
-                gameLinkNew = `/project.html?url=https://${gamedomain}/flash/#game=${gameParam}`;
+                thumbnail = `flash/images/${gameParam}.png`;
+                gameLinkNew = `/project.html?url=flash/#game=${gameParam}`;
             } else {
                 // HTML5 game
                 const gameLink = new URL(gameUrl).searchParams.get('url');
-                const newUrl = `https://${gamedomain}${gameLink}`; //gameLink.replace(/https:\/\/[^/]+/, `https://${gamedomain}`);
-                thumbnail = newUrl.replace(/index\.htm(l)?$/, 'cover.png');
-                gameLinkNew = `/project.html?url=${newUrl}`;
+                thumbnail = gameLink.replace(/index\.htm(l)?$/, 'cover.png');
+                gameLinkNew = `/project.html?url=${gameLink}`;
             }
 
             const gameItem = document.createElement('div');
@@ -147,3 +120,18 @@ document.addEventListener('DOMContentLoaded', () => {
         setupGames();
     });
 });
+
+function extractFlashGameURL(href) {
+    var url = href;
+    if (url.indexOf('#') !== -1) {
+        var queryString = url.split('#')[1];
+        var parameters = queryString.split('&');
+        for (var i = 0; i < parameters.length; i++) {
+            var parameter = parameters[i];
+            if (parameter.startsWith('game=')) {
+                return parameter.substring(5);
+            }
+        }
+    }
+    return null;
+}
