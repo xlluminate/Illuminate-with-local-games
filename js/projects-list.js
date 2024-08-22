@@ -1,13 +1,25 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const gameList = document.getElementById('game-list');
-    const loadingIndicator = document.getElementById('loading');
-    
-    // Ensure gamedomain cookie is set
-    var gamedomain = getCookie('gamedomain');
-    if (!gamedomain) {
-        gamedomain = "yourdefaultdomain.com";
-        setCookie('gamedomain', gamedomain, 365);
+function getMainURL() {
+    return `${window.location.protocol}//${window.location.host}`;
+}
+
+function extractFlashGameURL(href) {
+    var url = href;
+    if (url.indexOf('#') !== -1) {
+        var queryString = url.split('#')[1];
+        var parameters = queryString.split('&');
+        for (var i = 0; i < parameters.length; i++) {
+            var parameter = parameters[i];
+            if (parameter.startsWith('game=')) {
+                return parameter.substring(5);
+            }
+        }
     }
+    return null;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loadingIndicator = document.getElementById('loading');
+    const gameList = document.getElementById('game-list');
 
     // Function to fetch the game list from the external HTML file
     function fetchGameList() {
@@ -21,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to create game items from the fetched HTML
     function createGameItems(html) {
+        const mainURL = getMainURL();
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
 
@@ -28,24 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cards.forEach(card => {
             const link = card.querySelector('a');
-            const gameName = link.textContent.trim();
+            const gameName = link.textContent;
             const gameUrl = link.getAttribute('href');
-            
-            let newUrl;
             let thumbnail;
+            let gameLinkNew;
 
             if (gameUrl.includes('#game=')) {
                 // Flash game
-                const gameParam = gameUrl.split('#game=')[1];
-                newUrl = `${gamedomain}/projects/flash/#game=${gameParam}`;
-                thumbnail = `${gamedomain}/projects/flash/images/${gameParam}.png`;
+                const gameParam = extractFlashGameURL(gameUrl);
+                thumbnail = `${mainURL}/projects/flash/images/${gameParam}.png`;
+                gameLinkNew = `/project.html?url=${mainURL}/projects/flash/#game=${gameParam}`;
             } else {
-                // Normal game
-                newUrl = gameUrl.replace('/project.html?url=', `${gamedomain}/projects`);
-                thumbnail = newUrl.replace(/index\.html?$/, 'cover.png');
+                // HTML5 game
+                thumbnail = gameUrl.replace(/index\.htm(l)?$/, 'cover.png');
+                gameLinkNew = `/project.html?url=${mainURL}/projects${gameUrl.replace('project.html?url=', '')}`;
             }
-
-            link.setAttribute('href', newUrl);
 
             const gameItem = document.createElement('div');
             gameItem.classList.add('game-item');
@@ -57,10 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const gameTitle = document.createElement('h3');
             gameTitle.textContent = gameName;
 
-            link.appendChild(gameImage);
-            link.appendChild(gameTitle);
+            const gameLinkElement = document.createElement('a');
+            gameLinkElement.href = gameLinkNew;
 
-            gameItem.appendChild(link);
+            gameLinkElement.appendChild(gameImage);
+            gameLinkElement.appendChild(gameTitle);
+
+            gameItem.appendChild(gameLinkElement);
             gameList.appendChild(gameItem);
         });
     }
@@ -74,24 +87,3 @@ document.addEventListener('DOMContentLoaded', () => {
         createGameItems(html);
     });
 });
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(";");
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == " ") c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
-
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
