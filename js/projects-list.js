@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (gameUrl.includes('#game=')) {
                 // Flash game
                 const gameParam = extractFlashGameURL(gameUrl);
-                thumbnail = `flash/images/${gameParam}.png`;
+                thumbnail = `projects/flash/images/${gameParam}.png`;
                 gameLinkNew = `projects/flash/#game=${gameParam}`;
             } else {
                 // HTML5 game
