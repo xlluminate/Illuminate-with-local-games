@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cards.forEach(card => {
             const link = card.querySelector('a');
             const gameName = link.textContent;
-            let gameUrl = link.getAttribute('href');
+            let gameUrl = link.getAttribute('href').replace('project.html?url=', '');
             let thumbnail;
             let gameLinkNew;
 
@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 gameLinkNew = `/project.html?url=${mainURL}/projects/flash/#game=${gameParam}`;
             } else {
                 // HTML5 game
-                gameUrl = gameUrl.replace('project.html?url=', '');
                 thumbnail = `${mainURL}/projects${gameUrl.replace(/index\.htm(l)?$/, 'cover.png')}`;
                 gameLinkNew = `/project.html?url=${mainURL}/projects${gameUrl}`;
             }
