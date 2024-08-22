@@ -19,119 +19,53 @@ function setCookie(name, value, days) {
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 
-var allElements = [];
-var elements = [];
-var elementsNew = [];
-
 function setupGames() {
-    function initGames() {
-        var nodeList = document.querySelectorAll('.game-item');
-        Array.from(nodeList).forEach(function(el) {
-            allElements.push(el);
-            console.log(el);
-        });
-    }
+    var gameList = document.getElementById('game-list');
 
-    function writeAll() {
-        for (let i = 0; i < allElements.length; i++) {
-            document.querySelector('#game-list').innerHTML += allElements[i];
-        }
-    }
+    fetch('/projects/')
+        .then(response => response.text())
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const links = doc.querySelectorAll('a');
 
-    function writeNew() {
-        for (let i = 0; i < elementsNew.length; i++) {
-            document.querySelector('#game-list').innerHTML += elementsNew[i];
-        }
-    }
+            links.forEach(link => {
+                const gameName = link.textContent;
+                const gamePath = link.getAttribute('href');
 
-    initGames();
+                if (gamePath && gamePath !== '../' && gamePath !== './') {
+                    const gameUrl = `/projects/${gamePath}`;
+                    const thumbnail = `${gameUrl}cover.png`;
+                    const gameLinkNew = `/project.html?url=${gameUrl}index.html`;
+
+                    const gameItem = document.createElement('div');
+                    gameItem.classList.add('game-item');
+
+                    const gameImage = document.createElement('img');
+                    gameImage.src = thumbnail;
+                    gameImage.alt = gameName;
+
+                    const gameTitle = document.createElement('h3');
+                    gameTitle.textContent = gameName;
+
+                    const gameLinkElement = document.createElement('a');
+                    gameLinkElement.href = gameLinkNew;
+
+                    gameLinkElement.appendChild(gameImage);
+                    gameLinkElement.appendChild(gameTitle);
+
+                    gameItem.appendChild(gameLinkElement);
+                    gameList.appendChild(gameItem);
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching project list:', error));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const loadingIndicator = document.getElementById('loading');
-    const gameList = document.getElementById('game-list');
 
-    // Function to fetch the game list from the external HTML file
-    function fetchGameList() {
-        return fetch('list.html')
-            .then(response => response.text())
-            .catch(error => {
-                console.error('Error fetching game list:', error);
-                return '';
-            });
-    }
+    loadingIndicator.style.display = 'none';
 
-    // Function to create game items from the fetched HTML
-    function createGameItems(html) {
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
-
-        const cards = tempDiv.querySelectorAll('.card');
-
-        cards.forEach(card => {
-            const link = card.querySelector('a');
-            const gameName = link.textContent;
-            const gameUrl = link.href;
-
-            let thumbnail;
-            let gameLinkNew;
-
-            if (gameUrl.includes('#game=')) {
-                // Flash game
-                const gameParam = extractFlashGameURL(gameUrl);
-                thumbnail = `projects/flash/images/${gameParam}.png`;
-                gameLinkNew = `projects/flash/#game=${gameParam}`;
-            } else {
-                // HTML5 game
-                const gameLink = new URL(gameUrl).searchParams.get('url');
-                thumbnail = gameLink.replace(/index\.htm(l)?$/, 'cover.png');
-                gameLinkNew = `projects/${gameLink}`;
-            }
-
-            const gameItem = document.createElement('div');
-            gameItem.classList.add('game-item');
-
-            const gameImage = document.createElement('img');
-            gameImage.src = thumbnail;
-            gameImage.alt = gameName;
-
-            const gameTitle = document.createElement('h3');
-            gameTitle.textContent = gameName;
-
-            const gameLinkElement = document.createElement('a');
-            gameLinkElement.href = gameLinkNew;
-
-            gameLinkElement.appendChild(gameImage);
-            gameLinkElement.appendChild(gameTitle);
-
-            gameItem.appendChild(gameLinkElement);
-            gameList.appendChild(gameItem);
-        });
-    }
-
-    // Fetch and load the game list
-    fetchGameList().then(html => {
-        // Hide loading indicator
-        loadingIndicator.style.display = 'none';
-
-        // Create game items
-        createGameItems(html);
-
-        setupGames();
-    });
+    setupGames();
 });
-
-function extractFlashGameURL(href) {
-    var url = href;
-    if (url.indexOf('#') !== -1) {
-        var queryString = url.split('#')[1];
-        var parameters = queryString.split('&');
-        for (var i = 0; i < parameters.length; i++) {
-            var parameter = parameters[i];
-            if (parameter.startsWith('game=')) {
-                return parameter.substring(5);
-            }
-        }
-    }
-    return null;
-}
