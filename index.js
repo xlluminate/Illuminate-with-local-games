@@ -1,15 +1,21 @@
-const express = require('express');
-const path = require('path');
+import http from "node:http";
+import path from "node:path";
+import express from "express";
+import chalk from "chalk";
 
 const app = express();
-const port = 8080; 
+const PORT = process.env.PORT || 8080;
 
-app.use(express.static(path.join(__dirname, 'public')));
+console.log(chalk.yellow("starting..."));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.use(express.static(path.join(process.cwd(), "public")));
+
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(process.cwd(), "public", "404.html"));
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+const server = http.createServer(app);
+
+server.listen(PORT, () => {
+    console.log(chalk.green(`running on http://localhost:${PORT}`));
 });
