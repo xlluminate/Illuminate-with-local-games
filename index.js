@@ -1,7 +1,7 @@
-import http from "node:http";
-import path from "node:path";
-import express from "express";
-import chalk from "chalk";
+const http = require("node:http");
+const path = require("node:path");
+const express = require("express");
+const chalk = require("chalk");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
