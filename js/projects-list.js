@@ -53,8 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 gameLinkNew = `/project.html?url=${mainURL}/projects/flash/#game=${gameParam}`;
             } else {
                 // HTML5 game
-                thumbnail = gameUrl.replace(/index\.htm(l)?$/, 'cover.png');
-                gameLinkNew = `/project.html?url=${mainURL}/projects${gameUrl.replace('project.html?url=', '')}`;
+                const gamePath = gameUrl.replace('project.html?url=', '');
+                thumbnail = `${mainURL}/projects${gamePath.replace(/index\.htm(l)?$/, 'cover.png')}`;
+                gameLinkNew = `/project.html?url=${mainURL}/projects${gamePath}`;
             }
 
             const gameItem = document.createElement('div');
