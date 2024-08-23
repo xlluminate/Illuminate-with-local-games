@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loadingIndicator = document.getElementById('loading');
     const gameList = document.getElementById('game-list');
-    const mainURL = window.location.origin;
 
     // Function to fetch the game list from the external HTML file
     function fetchGameList() {
@@ -20,23 +19,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const cards = tempDiv.querySelectorAll('.card');
 
+        // Get the base URL of the current site
+        const mainURL = window.location.origin;
+
         cards.forEach(card => {
             const link = card.querySelector('a');
             const gameName = link.textContent;
-            let gameUrl = link.getAttribute('href').replace('/project.html?url=', '');
+            const gameUrl = link.getAttribute('href').replace('project.html?url=', '');
+
             let thumbnail;
             let gameLinkNew;
 
             if (gameUrl.includes('#game=')) {
                 // Flash game
-                const gameParam = extractFlashGameURL(gameUrl);
+                const gameParam = new URLSearchParams(gameUrl.split('#')[1]).get('game');
                 thumbnail = `${mainURL}/projects/flash/images/${gameParam}.png`;
                 gameLinkNew = `/project.html?url=${mainURL}/projects/flash/#game=${gameParam}`;
             } else {
                 // HTML5 game
-                gameUrl = `${mainURL}/projects${gameUrl}`;
-                thumbnail = gameUrl.replace(/index\.htm(l)?$/, 'cover.png');
-                gameLinkNew = `/project.html?url=${gameUrl}`;
+                const gamePath = gameUrl.replace(/index\.htm(l)?$/, 'cover.png');
+                thumbnail = `${mainURL}/projects${gamePath}`;
+                gameLinkNew = `/project.html?url=${mainURL}/projects${gameUrl}`;
             }
 
             const gameItem = document.createElement('div');
@@ -58,22 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
             gameItem.appendChild(gameLinkElement);
             gameList.appendChild(gameItem);
         });
-    }
-
-    // Function to extract game parameter from Flash game URL
-    function extractFlashGameURL(href) {
-        var url = href;
-        if (url.indexOf('#') !== -1) {
-            var queryString = url.split('#')[1];
-            var parameters = queryString.split('&');
-            for (var i = 0; i < parameters.length; i++) {
-                var parameter = parameters[i];
-                if (parameter.startsWith('game=')) {
-                    return parameter.substring(5);
-                }
-            }
-        }
-        return null;
     }
 
     // Fetch and load the game list
