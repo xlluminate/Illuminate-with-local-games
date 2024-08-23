@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingIndicator = document.getElementById('loading');
     const gameList = document.getElementById('game-list');
 
-    // Function to fetch the game list from the external HTML file
     function fetchGameList() {
         return fetch('list.html')
             .then(response => response.text())
@@ -12,31 +11,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Function to create game items from the fetched HTML
     function createGameItems(html) {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
 
         const cards = tempDiv.querySelectorAll('.card');
 
-        // Get the base URL of the current site
         const mainURL = window.location.origin;
 
         cards.forEach(card => {
             const link = card.querySelector('a');
             const gameName = link.textContent;
+
             const gameUrl = link.getAttribute('href').replace('project.html?url=', '');
 
             let thumbnail;
             let gameLinkNew;
 
             if (gameUrl.includes('#game=')) {
-                // Flash game
                 const gameParam = new URLSearchParams(gameUrl.split('#')[1]).get('game');
                 thumbnail = `${mainURL}/projects/flash/images/${gameParam}.png`;
                 gameLinkNew = `/project.html?url=${mainURL}/projects/flash/#game=${gameParam}`;
             } else {
-                // HTML5 game
                 const gamePath = gameUrl.replace(/index\.htm(l)?$/, 'cover.png');
                 thumbnail = `${mainURL}/projects${gamePath}`;
                 gameLinkNew = `/project.html?url=${mainURL}/projects${gameUrl}`;
@@ -63,12 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fetch and load the game list
     fetchGameList().then(html => {
-        // Hide loading indicator
         loadingIndicator.style.display = 'none';
 
-        // Create game items
         createGameItems(html);
     });
 });
