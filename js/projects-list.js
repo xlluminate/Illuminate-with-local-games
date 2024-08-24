@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-
     function createGameItems(html) {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
@@ -21,16 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cards.forEach(card => {
             const link = card.querySelector('a');
-            const gameName = link.textContent.trim(); 
-            let gameUrl = link.getAttribute('href').replace('project.html?url=', ''); 
+            const gameName = link.textContent.trim();
+            let gameUrl = link.getAttribute('href');
+            
+            console.log('Original href:', gameUrl);
+
+            gameUrl = gameUrl.replace('project.html?url=', '');
+
+            console.log('Cleaned URL:', gameUrl);
 
             let thumbnail;
             if (gameUrl.includes('#game=')) {
-
                 const gameParam = gameUrl.split('#game=')[1];
                 thumbnail = `${mainURL}/projects/flash/images/${gameParam}.png`;
             } else {
-    
                 thumbnail = `${mainURL}/projects${gameUrl.replace(/index\.htm(l)?$/, 'cover.png')}`;
             }
 
@@ -59,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fetchGameList().then(html => {
-
         loadingIndicator.style.display = 'none';
 
         createGameItems(html);
