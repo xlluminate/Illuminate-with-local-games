@@ -1,4 +1,3 @@
-const currentDomain = window.location.origin + '/projects';
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(";");
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ensure gamedomain cookie is set
     var gamedomain = getCookie('gamedomain');
     if (!gamedomain) {
-        gamedomain = "currentDomain";
+        gamedomain = "projectassets.teacherease.net";
         setCookie('gamedomain', gamedomain, 365);
     }
 
@@ -106,12 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (gameUrl.includes('#game=')) {
                 // Flash game
                 const gameParam = extractFlashGameURL(gameUrl);
-                thumbnail = `${currentDomain}/flash/images/${gameParam}.png`;
-                gameLinkNew = `/project.html?url=${currentDomain}/flash/#game=${gameParam}`;
+                thumbnail = `${gamedomain}/flash/images/${gameParam}.png`;
+                gameLinkNew = `/project.html?url=${gamedomain}/flash/#game=${gameParam}`;
             } else {
                 // HTML5 game
                 const gameLink = new URL(gameUrl).searchParams.get('url');
-                const newUrl = `${currentDomain}${gameLink}`; //gameLink.replace(/https:\/\/[^/]+/, `https://${gamedomain}`);
+                const newUrl = `${gamedomain}${gameLink}`; //gameLink.replace(/https:\/\/[^/]+/, `https://${gamedomain}`);
                 thumbnail = newUrl.replace(/index\.htm(l)?$/, 'cover.png');
                 gameLinkNew = `/project.html?url=${newUrl}`;
             }
