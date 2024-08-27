@@ -105,12 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (gameUrl.includes('#game=')) {
                 // Flash game
                 const gameParam = extractFlashGameURL(gameUrl);
-                thumbnail = `https://${gamedomain}/flash/images/${gameParam}.png`;
-                gameLinkNew = `/project.html?url=https://${gamedomain}/flash/#game=${gameParam}`;
+                thumbnail = `${gamedomain}/flash/images/${gameParam}.png`;
+                gameLinkNew = `/project.html?url=${gamedomain}/flash/#game=${gameParam}`;
             } else {
                 // HTML5 game
                 const gameLink = new URL(gameUrl).searchParams.get('url');
-                const newUrl = `https://${gamedomain}${gameLink}`; //gameLink.replace(/https:\/\/[^/]+/, `https://${gamedomain}`);
+                const newUrl = `${gamedomain}${gameLink}`; //gameLink.replace(/https:\/\/[^/]+/, `https://${gamedomain}`);
                 thumbnail = newUrl.replace(/index\.htm(l)?$/, 'cover.png');
                 gameLinkNew = `/project.html?url=${newUrl}`;
             }
