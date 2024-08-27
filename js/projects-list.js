@@ -1,3 +1,4 @@
+const currentDomain = window.location.origin + '/projects';
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(";");
@@ -74,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ensure gamedomain cookie is set
     var gamedomain = getCookie('gamedomain');
     if (!gamedomain) {
-        gamedomain = "projectassets.teacherease.net";
+        gamedomain = "currentDomain";
         setCookie('gamedomain', gamedomain, 365);
     }
 
