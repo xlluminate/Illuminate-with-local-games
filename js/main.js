@@ -1,3 +1,4 @@
+const currentDomain = window.location.origin + '/projects';
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(";");
@@ -57,5 +58,5 @@ function applyTheme(theme) {
 
 var gameServer = getCookie('gamedomain');
 if (gameServer == null) {
-    setCookie('gamedomain', 'projectassets.teacherease.net', 365);
+    setCookie('gamedomain', currentDomain, 365);
 }
