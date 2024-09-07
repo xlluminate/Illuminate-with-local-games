@@ -18,7 +18,7 @@ function setCookie(name, value, days) {
     }
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
-
+var gamedomain = getCookie('gamedomain');
 var allElements = [];
 var num = 900;
 var elements = [];
@@ -70,7 +70,7 @@ function extractFlashGameURL(href) {
 document.addEventListener('DOMContentLoaded', () => {
     const loadingIndicator = document.getElementById('loading');
     const gameList = document.getElementById('game-list');
-
+   
     // Function to fetch the game list from the external HTML file
     function fetchGameList() {
         return fetch('list.html')
