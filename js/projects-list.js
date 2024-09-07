@@ -71,13 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingIndicator = document.getElementById('loading');
     const gameList = document.getElementById('game-list');
 
-    // Ensure gamedomain cookie is set
-    var gamedomain = getCookie('gamedomain');
-    if (!gamedomain) {
-        gamedomain = "projectassets.teacherease.net";
-        setCookie('gamedomain', gamedomain, 365);
-    }
-
     // Function to fetch the game list from the external HTML file
     function fetchGameList() {
         return fetch('list.html')
