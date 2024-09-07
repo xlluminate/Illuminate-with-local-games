@@ -67,9 +67,6 @@ function applyTheme(theme) {
 }
 
 var gameServer = getCookie('gamedomain');
-if (gameServer == null) {
-    setCookie('gamedomain', currentdomain, 365);
-}
 if (gameServer !== currentdomain) {
     setCookie('gamedomain', currentdomain, 365);
 }
