@@ -1,4 +1,4 @@
-const currentDomain = window.location.origin + '/projects';
+const currentGameDomain = window.location.origin + '/projects';
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(";");
@@ -67,6 +67,6 @@ function applyTheme(theme) {
 }
 
 var gameServer = getCookie('gamedomain');
-if (gameServer == null) {
-    setCookie('gamedomain', currentDomain, 365);
+if (gameServer !== currentGameDomain) {
+    setCookie('gamedomain', currentGameDomain, 365);
 }
