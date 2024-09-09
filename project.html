@@ -4,59 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Project | Illuminate</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        #game-container {
-            width: 56%; 
-            height: 49%; 
-            position: fixed;
-            top: 24%;
-            left: 21%;
-            z-index: 9999;
-        }
-        #fullscreen-btn {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-        }
-        #fullscreen-btn:hover {
-            cursor: pointer;
-        }
-        .backbutton {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-        }
-        footer {
-            text-align: center;
-            background-color: #efefef;
-            color: #000000;
-            padding: 10px;
-            font-size: 16px;
-            position: fixed; /* Change to fixed positioning */
-            left: 0;
-            right: 0;
-            bottom: 0;
-            /* Remove left, right, and bottom properties */
-            box-shadow: 0 0 12px #cccccc;
-        }
-        a {
-            color: #007dcc;
-            text-decoration: none;
-            font-family: Arial;
-        }
-        a:hover {
-            color: #016aad;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="css/project.css">
     <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
 </head>
 <!-- Google tag (gtag.js) -->
@@ -78,10 +26,12 @@
 </script>
         <!-- iframe -->
     <div id="game-container" draggable="false"></div>
+    <div id="right-container">
+        <button id="direct-link-btn">Not working? Open the game directly</button>
+    </div>
     <!-- <iframe src="other/extra/iframes/iframe.html" width="640" height="600" scrolling="no" outline="none" frameborder="0" style="transform: scale(0.6) translateX(-220px); margin: 0px; position: absolute;"></iframe>
     <iframe src="other/extra/iframes/iframe.html" width="640" height="600" scrolling="no" outline="none" frameborder="0" style="transform: scale(0.6) translateX(1380px); margin: 0px; position: absolute;"></iframe> -->
     <div id="fullscreen-btn"><img src="img/fullscreen.svg" width="50" height="50" draggable="false" onclick="fullscreen()" /></div>
-    <p>If you are reading this and the game isn't loading, try reloading the page or switching the game domain.</p>
     <footer><a href="" onclick="cloak()">Open in about:blank Page</a> | <a href="projects.html" draggable="false">Back to Homepage</a></footer>
     
     <script>
