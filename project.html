@@ -48,26 +48,24 @@
         var autoFullscreen = getCookie('autoFullscreen');
         var fullScreen = 0;
         function fullscreen() {
-            if (fullScreen == 0) {
-                document.getElementById('fullscreen-btn').style.zIndex = '1000';
-                document.getElementById('game-container').style.width = '100%';
-                document.getElementById('game-container').style.height = '100%';
-                document.getElementById('game-container').style.zIndex = '999';
-                document.getElementById('game-container').style.position = 'fixed';
-                document.getElementById('game-container').style.top = '0';
-                document.getElementById('game-container').style.left = '0';
-                fullScreen = 1;
-            } else {
-                document.getElementById('fullscreen-btn').style.zIndex = '1000';
-                document.getElementById('game-container').style.width = '56%';
-                document.getElementById('game-container').style.height = '49%';
-                document.getElementById('game-container').style.zIndex = '999';
-                document.getElementById('game-container').style.position = 'fixed';
-                document.getElementById('game-container').style.top = '24%';
-                document.getElementById('game-container').style.left = '21%';
-                fullScreen = 0;
-            }
-        }
+    var gameContainer = document.getElementById('game-container');
+    var fullScreenBtn = document.getElementById('fullscreen-btn');
+    var fullScreen = 0;
+
+    if (fullScreen === 0) {
+        gameContainer.style.width = '100%';
+        gameContainer.style.height = '100%';
+        gameContainer.style.position = 'fixed';
+        gameContainer.style.top = '0';
+        gameContainer.style.left = '0';
+        fullScreen = 1;
+    } else {
+        gameContainer.style.width = '70%';
+        gameContainer.style.height = '100%';
+        gameContainer.style.position = 'relative';
+        fullScreen = 0;
+    }
+}
         if (autoFullscreen == 'true') {
             fullscreen();
         }
